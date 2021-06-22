@@ -58,17 +58,19 @@ function editItem(e) {
 function saveEditedItem(e) {
     e.target.setAttribute('contenteditable', 'false');
 
-    if (initialItemText !== e.target.innerText.trim()) {
+    let editedText = e.target.innerText.replace(/(\r\n|\n|\r)/gm, " ").replace(/\s+/g, " ");
+
+    if (initialItemText !== editedText.trim()) {
         let updatedItem = getLists().map(list => {
             if (list.item === initialItemText) {
-                list.item = e.target.innerText;
+                list.item = editedText;
             };
             return list;
         })
-
+        e.target.innerText = editedText;
         saveLists(updatedItem);
     } else {
-        e.target.innerText = initialItemText;
+        e.target.innerText = editedText;
     }
 }
 
@@ -134,5 +136,5 @@ document.addEventListener('DOMContentLoaded', () => {
     let today = new Date().toLocaleString('en-US', { weekday: 'long' });
     document.getElementById('day').innerText = today;
 
-    document.getElementById('greet').innerText = greetings[Math.floor(Math.random() * greetings.length)]
+    document.getElementById('greet').innerText = greetings[Math.floor(Math.random() * greetings.length)];
 })
