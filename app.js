@@ -4,6 +4,7 @@ const checklistsContainer = document.getElementById('checklists-container');
 let initialItemText;
 const listLimit = 30;
 const greetings = ['great', 'lovely', 'marvelous', 'wonderful', 'happy', 'terrific', 'pleasent'];
+const colors = ['#F9C81C', '#2CADF6', '#58D6BF'];
 
 //----------------- localstorage setup -----------------//
 // get from localstorage
@@ -44,7 +45,7 @@ function removeItem(e) {
     saveLists(newList);
 
     if (newList.length === 0) {
-        checklistsContainer.style.padding = '0';
+        checklistsContainer.classList.remove('has-list');
     }
 }
 
@@ -122,20 +123,52 @@ function createListUI(item, isComplete = false) {
     checklistWrap.appendChild(deleteButton);
 
     checklistsContainer.appendChild(checklistWrap);
-    checklistsContainer.style.padding = '20px';
+    checklistsContainer.classList.add('has-list');
 
     if (isComplete) {
         checklistWrap.classList.add('completed');
     }
 }
 
+// Clear list UI
+function clearlistUI() {
+    let checkLists = checklistsContainer.childNodes;
+    for (let i = checkLists.length - 1; i >= 0; i--) {
+        checkLists[i].remove();
+    }
+}
+
+// clear completed list
+function clearCompleted() {
+    clearlistUI();
+    let newLists = getLists().filter(({ completed }) => !completed);
+    newLists.forEach(({ item, completed }) => createListUI(item, completed));
+    saveLists(newLists);
+
+    if (newLists.length === 0) {
+        checklistsContainer.classList.remove('has-list');
+    }
+}
+
+// reset all
+function resetAll() {
+    let result = confirm('This action will clear all data.');
+    if (result) {
+        clearlistUI();
+        localStorage.clear();
+        checklistsContainer.classList.remove('has-list');
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     getLists().forEach(({ item, completed }) => createListUI(item, completed));
     document.getElementById('add-button').addEventListener('click', addNewItem);
 
+    document.getElementById('clear-completed').addEventListener('click', clearCompleted);
+    document.getElementById('reset-all').addEventListener('click', resetAll);
+
     let today = new Date().toLocaleString('en-US', { weekday: 'long' });
     document.getElementById('day').innerText = today;
-
+    document.getElementById('day').style.color = colors[Math.floor(Math.random() * colors.length)];
     document.getElementById('greet').innerText = greetings[Math.floor(Math.random() * greetings.length)];
 })
