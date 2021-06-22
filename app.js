@@ -1,8 +1,8 @@
 const checklistInput = document.getElementById('list-input');
-const checklistAddButton = document.getElementById('add-button');
 const checklistsContainer = document.getElementById('checklists-container');
 
 let initialItemText;
+const listLimit = 30;
 const greetings = ['great', 'lovely', 'marvelous', 'wonderful', 'happy', 'terrific', 'pleasent'];
 
 //----------------- localstorage setup -----------------//
@@ -79,13 +79,14 @@ function addNewItem(e) {
     e.preventDefault();
     let newItem = checklistInput.value.trim();
 
-    let isDuplicate = getLists()
+    let checklists = getLists();
+
+    let isDuplicate = checklists
         .find(({ item }) => item.toLowerCase() === newItem.toLowerCase());
 
-    if (newItem && !isDuplicate) {
+    if (newItem && !isDuplicate && checklists.length < listLimit) {
         createListUI(newItem);
         let newChecklist = { item: newItem, completed: false };
-        let checklists = getLists();
         checklists.push(newChecklist);
         saveLists(checklists);
     }
@@ -131,7 +132,7 @@ function createListUI(item, isComplete = false) {
 
 document.addEventListener('DOMContentLoaded', () => {
     getLists().forEach(({ item, completed }) => createListUI(item, completed));
-    checklistAddButton.addEventListener('click', addNewItem);
+    document.getElementById('add-button').addEventListener('click', addNewItem);
 
     let today = new Date().toLocaleString('en-US', { weekday: 'long' });
     document.getElementById('day').innerText = today;
