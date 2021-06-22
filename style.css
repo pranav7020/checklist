@@ -1,0 +1,225 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #3d3c40;
+  --secondary: #313033;
+  --accent-1: #4d4b52;
+  --background: #1d1d1f;
+  --font-primary: #ffffff;
+  --font-secondary: #9b98a6;
+  --highlight: #6562fc;
+  --check-box: #58d6bf;
+  --delete: #e86350;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+  background: var(--background);
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+i {
+  pointer-events: none;
+}
+
+button,
+input {
+  border: none;
+  outline: none;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero {
+  text-align: center;
+  color: var(--font-primary);
+  margin-bottom: 30px;
+}
+
+#day,
+#greet,
+#category {
+  text-transform: capitalize;
+}
+
+.input-wrap {
+  width: 400px;
+  max-width: 80vw;
+  max-height: 50px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background: var(--secondary);
+  border: 2px solid var(--highlight);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+#list-input {
+  flex: 1;
+  background: transparent;
+  padding: 15px 10px;
+  font-size: 18px;
+  color: var(--font-primary);
+}
+
+#add-button {
+  right: 0;
+  width: 40px;
+  background: var(--accent-1);
+  padding: 15px 0;
+  cursor: pointer;
+  color: var(--font-secondary);
+  font-size: 18px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+#list-input:valid + #add-button {
+  pointer-events: fill;
+  opacity: 1;
+}
+
+#checklists-container {
+  width: fit-content;
+  min-height: fit-content;
+  max-height: calc(100vh - 200px);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: var(--primary);
+}
+
+.checklist {
+  display: flex;
+}
+
+.checklist__item {
+  margin: 0 20px;
+  outline: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  resize: none;
+  display: block;
+  width: 250px;
+  max-width: 50vw;
+  overflow: hidden;
+  background: var(--accent-1);
+  color: var(--font-primary);
+  cursor: default;
+}
+
+.checklist__item[contenteditable="true"] {
+  cursor: auto;
+}
+
+.checklist__complete-btn,
+.checklist__delete-btn {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  background: var(--accent-1);
+  cursor: pointer;
+}
+
+.checklist__complete-btn {
+  color: var(--check-box);
+  border-radius: 5px 0 0 5px;
+}
+
+.checklist__delete-btn {
+  color: var(--delete);
+  border-radius: 0 5px 5px 0;
+}
+
+/* --------------- checklist complete style --------------- */
+
+.checklist.completed > .checklist__item {
+  text-decoration: line-through;
+  pointer-events: none;
+  background: var(--secondary);
+  color: var(--font-secondary);
+}
+
+.checklist.completed > .checklist__complete-btn,
+.checklist.completed > .checklist__delete-btn {
+  background: var(--secondary);
+  color: var(--font-secondary);
+}
+
+/* -------------------------------------------------------- */
+
+#input-label {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 25px;
+}
+
+@media screen and (max-width: 991px) {
+  body {
+    padding: 20px;
+  }
+
+  main {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  #list-input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .checklist__item {
+    margin: 0 10px;
+  }
+
+  .checklist__complete-btn,
+  .checklist__delete-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  #input-label {
+    width: 40px;
+    height: 40px;
+  }
+}
