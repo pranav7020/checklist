@@ -27,7 +27,7 @@ function toggleCompleteItem(e) {
     e.target.parentElement.classList.toggle('completed');
 
     let newList = getLists().map(list => {
-        if (list.item === e.target.nextElementSibling.innerText.toLowerCase()) {
+        if (list.item.toLowerCase() === e.target.nextElementSibling.innerText.toLowerCase()) {
             list.completed = !list.completed;
         };
         return list;
@@ -40,7 +40,7 @@ function toggleCompleteItem(e) {
 function removeItem(e) {
     e.target.parentElement.remove();
     let removeEl = e.target.previousElementSibling.innerText.toLowerCase();
-    let newList = getLists().filter(({ item }) => item !== removeEl);
+    let newList = getLists().filter(({ item }) => item.toLowerCase() !== removeEl);
     saveLists(newList);
 
     if (newList.length === 0) {
@@ -88,6 +88,7 @@ function addNewItem(e) {
         saveLists(checklists);
     }
 
+    checklistsContainer.scrollTop = checklistsContainer.scrollHeight;
     checklistInput.value = null;
 }
 
