@@ -3,13 +3,6 @@
   margin: 0;
   box-sizing: border-box;
 
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -71,6 +64,12 @@ main {
   text-align: center;
   color: var(--font-primary);
   margin-bottom: 30px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .hero p {
@@ -123,6 +122,46 @@ main {
 #list-input:valid + #add-button {
   pointer-events: fill;
   opacity: 1;
+}
+
+#quote {
+  position: relative;
+  top: 10vh;
+  display: none;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+#quote p {
+  text-align: center;
+  font-style: italic;
+  color: var(--clear-completed-button);
+}
+
+#quote footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #58D6BF;
+}
+
+#quote footer div {
+  color: #9B98A6;
+  cursor: pointer;
+}
+
+#quote-author::before {
+  content: "\2010";
+  margin-right: 5px;
+}
+
+#quote label {
+  display: block;
+  color: var(--highlight);
+  text-align: center;
+  margin-top: 30px;
+  cursor: pointer;
 }
 
 #checklists-container {

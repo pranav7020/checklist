@@ -1,9 +1,10 @@
 const checklistInput = document.getElementById('list-input');
 const checklistsContainer = document.getElementById('checklists-container');
+const quote = document.getElementById('quote');
 
 let initialItemText;
 const listLimit = 30;
-const greetings = ['great', 'lovely', 'marvelous', 'wonderful', 'happy', 'terrific', 'pleasent'];
+const greetings = ['lovely', 'marvelous', 'wonderful', 'happy', 'pleasent'];
 const colors = ['#F9C81C', '#2CADF6', '#58D6BF'];
 
 //----------------- localstorage setup -----------------//
@@ -46,6 +47,7 @@ function removeItem(e) {
 
     if (newList.length === 0) {
         checklistsContainer.classList.remove('has-list');
+        getRandomQuote();
     }
 }
 
@@ -124,6 +126,7 @@ function createListUI(item, isComplete = false) {
 
     checklistsContainer.appendChild(checklistWrap);
     checklistsContainer.classList.add('has-list');
+    quote.style.display = 'none';
 
     if (isComplete) {
         checklistWrap.classList.add('completed');
@@ -147,6 +150,7 @@ function clearCompleted() {
 
     if (newLists.length === 0) {
         checklistsContainer.classList.remove('has-list');
+        getRandomQuote();
     }
 }
 
@@ -157,7 +161,23 @@ function resetAll() {
         clearlistUI();
         localStorage.clear();
         checklistsContainer.classList.remove('has-list');
+        getRandomQuote();
     }
+}
+
+async function getRandomQuote() {
+    fetch('https://api.quotable.io/random?maxLength=150')
+        .then(response => response.json())
+        .then(data => {
+            quote.style.display = 'block';
+            document.getElementById('quote-content').innerText = data.content;
+            document.getElementById('quote-author').innerText = data.author;
+        })
+        .catch(() => {
+            quote.style.display = 'block';
+            document.getElementById('quote-content').innerText = 'The present is theirs; the future, for which I really worked, is mine.';
+            document.getElementById('quote-author').innerText = 'Nikola Tesla';
+        })
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -171,4 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('day').innerText = today;
     document.getElementById('day').style.color = colors[Math.floor(Math.random() * colors.length)];
     document.getElementById('greet').innerText = greetings[Math.floor(Math.random() * greetings.length)];
+
+    getRandomQuote()
 })
