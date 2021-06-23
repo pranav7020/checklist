@@ -11,12 +11,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <title>Checklist</title>
 </head>
 
@@ -31,6 +31,7 @@
                 </button>
             </form>
         </div>
+        <button id="intall-btn">+</button>
 
         <div id="quote">
             <p><q id="quote-content"></q></p>
@@ -48,8 +49,21 @@
             <div id="reset-all"><i class="fas fa-redo"></i> Reset</div>
         </div>
 
+
     </main>
     <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => {
+                        console.log('Registered', reg)
+                    }).catch(err => {
+                        console.log('Registration Failed ', err);
+                    })
+            })
+        }
+    </script>
 </body>
 
 </html>
