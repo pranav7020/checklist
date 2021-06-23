@@ -46,7 +46,6 @@ function removeItem(e) {
     saveLists(newList);
 
     if (newList.length === 0) {
-        checklistsContainer.classList.remove('has-list');
         getRandomQuote();
     }
 }
@@ -149,7 +148,6 @@ function clearCompleted() {
     saveLists(newLists);
 
     if (newLists.length === 0) {
-        checklistsContainer.classList.remove('has-list');
         getRandomQuote();
     }
 }
@@ -160,12 +158,13 @@ function resetAll() {
     if (result) {
         clearlistUI();
         localStorage.clear();
-        checklistsContainer.classList.remove('has-list');
         getRandomQuote();
     }
 }
 
 async function getRandomQuote() {
+    checklistsContainer.classList.remove('has-list');
+
     fetch('https://api.quotable.io/random?maxLength=150')
         .then(response => response.json())
         .then(data => {
@@ -192,5 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('day').style.color = colors[Math.floor(Math.random() * colors.length)];
     document.getElementById('greet').innerText = greetings[Math.floor(Math.random() * greetings.length)];
 
-    getRandomQuote()
+    if (getLists().length === 0)
+        getRandomQuote()
 })

@@ -10,6 +10,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
     <link rel="stylesheet" href="style.css">
     <title>Checklist</title>
 </head>
@@ -29,7 +35,7 @@
         <div id="quote">
             <p><q id="quote-content"></q></p>
             <footer>
-                <div onclick="getRandomQuote()"><i class="fas fa-random"></i></div>
+                <div onclick="getRandomQuote()" title="Random Quote"><i class="fas fa-random"></i></div>
                 <small id="quote-author"></small>
             </footer>
             <label for="list-input"><i class="fas fa-plus"></i> Add today list</label>
@@ -39,7 +45,7 @@
 
         <div class="list-action">
             <div id="clear-completed"><i class="far fa-times-circle"></i> Clear Completed</div>
-            <div id="reset-all"><i class="fas fa-redo"></i> Reset All</div>
+            <div id="reset-all"><i class="fas fa-redo"></i> Reset</div>
         </div>
 
     </main>
