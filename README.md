@@ -1,4 +1,4 @@
-# checklist✅
+# checklist🎉
 
 A simple To-Do progressive web app📱.
 
