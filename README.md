@@ -1,5 +1,7 @@
-# checklist
+# checklist✅
 
-A progressive To-Do web app.
+A simple To-Do progressive web app📱.
 
-Theme color credits : [Michal Parulski](https://dribbble.com/shots/14630755-Cards-Dark-UI)
+## Credits👏
+🌈Theme color : [Michal Parulski](https://dribbble.com/shots/14630755-Cards-Dark-UI)
+🌱Quote API : [Quotable](https://github.com/lukePeavey/quotable)
