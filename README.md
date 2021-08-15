@@ -1,7 +1,7 @@
-# Checklist 🎉
+# Checklist ✅
+- A simple checklist application with random Quotes.
+- Can create and edit the list item.
+- can delete the completed or indivudual lists.
+- Install as a Progressive Web App📱.
 
-A simple To-Do progressive web app📱.
-
-### Credits 👏
-🌈 Theme color : [Michal Parulski](https://dribbble.com/shots/14630755-Cards-Dark-UI)
 🌱 Quote API : [Quotable](https://github.com/lukePeavey/quotable)
