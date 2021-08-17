@@ -206,6 +206,12 @@ main {
   display: flex;
 }
 
+.checklist.remove_item {
+  opacity: 0.1;
+  transform: translateX(-100%);
+  transition: all 0.3s ease-in-out;
+}
+
 .checklist__item {
   margin: 0 20px;
   outline: none;
@@ -220,6 +226,7 @@ main {
   color: var(--font-primary);
   cursor: default;
   box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b;
+  transition: all 0.25s ease-in-out;
 }
 
 .checklist__item > div {
@@ -240,6 +247,7 @@ main {
   cursor: pointer;
   box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b;
   text-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b;
+  transition: all 0.25s ease-in-out;
 }
 
 .checklist__complete-btn {

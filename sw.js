@@ -1,4 +1,4 @@
-const newCacheName = `my-checklist-V-1.0`;
+const newCacheName = `Checklist-V0.0`;
 
 const filesToCache = [
     `/`,

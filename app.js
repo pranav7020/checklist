@@ -40,14 +40,17 @@ function toggleCompleteItem(e) {
 
 // remove item from the list
 function removeItem(e) {
-    e.target.parentElement.remove();
-    let removeEl = e.target.previousElementSibling.innerText.toLowerCase();
-    let newList = getLists().filter(({ item }) => item.toLowerCase() !== removeEl);
-    saveLists(newList);
+    e.target.parentElement.classList.add('remove_item');
+    setTimeout(() => {
+        e.target.parentElement.remove();
+        let removeEl = e.target.previousElementSibling.innerText.toLowerCase();
+        let newList = getLists().filter(({ item }) => item.toLowerCase() !== removeEl);
+        saveLists(newList);
 
-    if (newList.length === 0) {
-        getRandomQuote();
-    }
+        if (newList.length === 0) {
+            getRandomQuote();
+        }
+    }, 300);
 }
 
 // make list editable
