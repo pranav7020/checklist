@@ -6,6 +6,10 @@ let initialItemText;
 const listLimit = 30;
 const greetings = ['lovely', 'marvelous', 'wonderful', 'happy', 'pleasent'];
 const colors = ['#F9C81C', '#2CADF6', '#58D6BF'];
+let random_quote = {
+    Q: 'The present is theirs; the future, for which I really worked, is mine.',
+    A: 'Nikola Tesla'
+}
 
 //----------------- localstorage setup -----------------//
 // get from localstorage
@@ -174,11 +178,13 @@ async function getRandomQuote() {
             quote.style.display = 'block';
             document.getElementById('quote-content').innerText = data.content;
             document.getElementById('quote-author').innerText = data.author;
+            random_quote.Q = data.content;
+            random_quote.A = data.author;
         })
         .catch(() => {
             quote.style.display = 'block';
-            document.getElementById('quote-content').innerText = 'The present is theirs; the future, for which I really worked, is mine.';
-            document.getElementById('quote-author').innerText = 'Nikola Tesla';
+            document.getElementById('quote-content').innerText = random_quote.Q;
+            document.getElementById('quote-author').innerText = random_quote.A;
         })
 }
 
@@ -196,4 +202,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (getLists().length === 0)
         getRandomQuote()
+
+    const ShareQuote = document.getElementById('share-quote');
+
+    if (!navigator.share) {
+        ShareQuote.style.display = 'none';
+    } else {
+        ShareQuote.addEventListener('click', async () => {
+            navigator.share({
+                title: 'Quote',
+                text: `_"${random_quote.Q}"_ \n*-${random_quote.A}*`,
+            })
+        })
+    }
 })

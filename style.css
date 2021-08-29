@@ -149,7 +149,12 @@ main {
   color: #58d6bf;
 }
 
-#quote footer div {
+#quote footer .quote-control {
+  display: flex;
+  gap: 20px;
+}
+
+#quote footer .quote-control div {
   color: #9b98a6;
   cursor: pointer;
 }
